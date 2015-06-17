@@ -13,16 +13,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+
+import com.denvys5.Menu;
 import net.launcher.run.Settings;
 import net.launcher.utils.BaseUtils;
 import net.launcher.utils.ImageUtils;
@@ -50,6 +47,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 	public static Button toPersonal = new Button("Войти в ЛК");
 	public Button toOptions = new Button("Настройки");
     public static Button toRegister = new Button("Регистрация");
+	public static Button toModMenu = new Button("Моды");
 	public JTextPane browser = new JTextPane();
 	public JTextPane personalBrowser = new JTextPane();
 	public JScrollPane bpane = new JScrollPane(browser);
@@ -148,6 +146,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		toPersonal.setVisible(Settings.usePersonal);
 		toOptions.addActionListener(this);
         toRegister.addActionListener(this);
+		toModMenu.addActionListener(this);
 		login.setText("Логин...");
 		login.addActionListener(this);
 		login.addFocusListener(this);
@@ -168,6 +167,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		toPersonal.setVisible(b2 && Settings.usePersonal);
 		toAuth.setVisible(b1);
 		toLogout.setVisible(b2);
+		toModMenu.setVisible(true);
 		toRegister.setVisible(Settings.useRegister && b1);
 		if(toGame.isVisible())
 		{
@@ -323,6 +323,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		panel.add(toLogout);
 		panel.add(toPersonal);
 		panel.add(toOptions);
+		panel.add(toModMenu);
         panel.add(toRegister);
 		panel.add(login);
 		panel.add(bpane);
@@ -359,7 +360,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 			ThreadUtils.pollSelectedServer();
 			try
 			{
-				main.memory.setText(String.valueOf(getPropertyInt("memory", 512)));
+				main.memory.setText(String.valueOf(getPropertyInt("memory", 1024)));
 				main.fullscreen.setSelected(getPropertyBoolean("fullscreen"));
 				main.loadnews.setSelected(getPropertyBoolean("loadnews", true));
                 main.Music.setSelected(getPropertyBoolean("Music", true));
@@ -547,6 +548,10 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		{
 			setLoading();
 			ThreadUtils.unban();
+		}
+		if(e.getSource() == toModMenu){
+			setLoading();
+			Menu.menu.setVisible(true);
 		}
 	}
 

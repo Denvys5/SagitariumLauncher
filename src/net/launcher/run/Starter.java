@@ -2,6 +2,8 @@ package net.launcher.run;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
+import com.denvys5.Menu;
 import net.launcher.components.Frame;
 import net.launcher.utils.BaseUtils;
 import net.launcher.utils.ProcessUtils;
@@ -9,15 +11,24 @@ import net.launcher.utils.ProcessUtils;
 public class Starter
 {
 	public static void main(String[] args) throws Exception
-	{		
+	{
+		Menu.Screen();
 		try {
+			//args[0] = "wJava";
 			String jarpath = Starter.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
 			int memory = BaseUtils.getPropertyInt("memory", 768);
 			
 			ArrayList<String> params = new ArrayList<String>();
-			params.add(System.getProperty("java.home")+"/bin/java");
-			if(System.getProperty("sun.arch.data.model").equals("32") && (memory>1024)) {
-				memory = 1024;
+			if(!args[0].equals("wJava")){
+				params.add(System.getProperty("java.home")+"/bin/java");
+			}else{
+				params.add("../bin/java");
+			}
+			if(System.getProperty("sun.arch.data.model").equals("32") && (memory>1536)) {
+				memory = 1536;
+			}
+			if(System.getProperty("sun.arch.data.model").equals("64") && (memory<2048)) {
+				memory = 2048;
 			}
 			params.add("-Xmx"+memory+"m");
 			params.add("-XX:MaxPermSize=128m");
