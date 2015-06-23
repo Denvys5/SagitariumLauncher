@@ -32,6 +32,7 @@ public class ThemeUtils extends BaseUtils
 		toPersonal.apply(Frame.toPersonal);
         toRegister.apply(Frame.toRegister);
 		toOptions.apply(main.toOptions);
+		toModMenu.apply(Frame.toModMenu);
 		login.apply(Frame.login);
 		password.apply(Frame.password);
 		newsBrowser.apply(main.bpane);

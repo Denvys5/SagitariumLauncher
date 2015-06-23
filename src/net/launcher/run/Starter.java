@@ -12,18 +12,17 @@ public class Starter
 {
 	public static void main(String[] args) throws Exception
 	{
-		Menu.Screen();
 		try {
 			//args[0] = "wJava";
 			String jarpath = Starter.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
 			int memory = BaseUtils.getPropertyInt("memory", 768);
 			
 			ArrayList<String> params = new ArrayList<String>();
-			if(!args[0].equals("wJava")){
+			//if(!args[0].equals("wJava")){
 				params.add(System.getProperty("java.home")+"/bin/java");
-			}else{
-				params.add("../bin/java");
-			}
+			//}else{
+			//	params.add("../bin/java");
+			//}
 			if(System.getProperty("sun.arch.data.model").equals("32") && (memory>1536)) {
 				memory = 1536;
 			}

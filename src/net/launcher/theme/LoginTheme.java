@@ -26,7 +26,8 @@ public class LoginTheme
 	public static ButtonStyle	 toPersonal  = new ButtonStyle(570, 436, 140, 40, "font", "button", 16F, Color.GREEN, true, Align.CENTER);
 	public static ButtonStyle	 toOptions   = new ButtonStyle(714, 436, 130, 40, "font", "button", 16F, Color.YELLOW, true, Align.CENTER);
 	public static ButtonStyle	 toRegister  = new ButtonStyle(570, 436, 140, 40, "font", "button", 16F, Color.YELLOW, true, Align.CENTER);
-	
+	public static ButtonStyle	 toModMenu  = new ButtonStyle(714, 476, 130, 40, "font", "button", 16F, Color.YELLOW, true, Align.CENTER);
+
 	public static TextfieldStyle login		= new TextfieldStyle(10, 440, 195, 36, "textfield", "font", 16F, Color.WHITE, Color.DARK_GRAY, new EmptyBorder(0, 10, 0, 10));
 	public static PassfieldStyle password	= new PassfieldStyle(215, 440, 195, 36, "textfield", "font", 16F, Color.WHITE, Color.DARK_GRAY, "*", new EmptyBorder(0, 10, 0, 10));
 	

@@ -20,6 +20,7 @@ import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
 import com.denvys5.Menu;
+import com.denvys5.ModsTheme;
 import net.launcher.run.Settings;
 import net.launcher.utils.BaseUtils;
 import net.launcher.utils.ImageUtils;
@@ -82,6 +83,8 @@ public class Frame extends JFrame implements ActionListener, FocusListener
     public Button closereg = new Button("Отмена");
                         
 	public Button options_close = new Button("Закрыть");
+	public Button modMenu_close = new Button("Закрыть");
+
 
 	public Button buyCloak = new Button("Купить плащ");
 	public Button changeSkin = new Button("Сменить скин");
@@ -550,8 +553,12 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 			ThreadUtils.unban();
 		}
 		if(e.getSource() == toModMenu){
-			setLoading();
-			Menu.menu.setVisible(true);
+			setMenu();
+		}
+
+		if(e.getSource() == modMenu_close){
+			restart();
+			setAuthComp();
 		}
 	}
 
@@ -694,5 +701,26 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		panel.removeAll();
 		addFrameComp();
 		panel.setErrorState(s);
+	}
+
+	public void setMenu(){
+		BaseUtils.execute(BaseUtils.buildUrl("launcher.php"), new Object[]{null});
+		panel.remove(hide);
+		panel.remove(close);
+		BufferedImage screen = ImageUtils.sceenComponent(panel);
+		panel.removeAll();
+		addFrameComp();
+		panel.setOptions(screen);
+		int i = 0;
+		for(String mod : Menu.modlist){
+			Button modButton = new Button(mod);
+			modButton.addActionListener(new Menu(mod));
+			panel.add(modButton);
+			(ModsTheme.createButton(i)).apply(modButton);
+			i++;
+		}
+		panel.add(Music);
+		panel.add(options_close);
+		repaint();
 	}
 }
