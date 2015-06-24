@@ -19,6 +19,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
+import com.denvys5.ButtonActionListener;
 import com.denvys5.Menu;
 import com.denvys5.ModsTheme;
 import net.launcher.run.Settings;
@@ -83,7 +84,6 @@ public class Frame extends JFrame implements ActionListener, FocusListener
     public Button closereg = new Button("Отмена");
                         
 	public Button options_close = new Button("Закрыть");
-	public Button modMenu_close = new Button("Закрыть");
 
 
 	public Button buyCloak = new Button("Купить плащ");
@@ -170,7 +170,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		toPersonal.setVisible(b2 && Settings.usePersonal);
 		toAuth.setVisible(b1);
 		toLogout.setVisible(b2);
-		toModMenu.setVisible(true);
+		toModMenu.setVisible(b2);
 		toRegister.setVisible(Settings.useRegister && b1);
 		if(toGame.isVisible())
 		{
@@ -463,6 +463,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
                 
 		if(e.getSource() == options_close)
 		{
+			Menu.modlist.clear();
 			if(!memory.getText().equals(getPropertyString("memory")))
 			{
 				try
@@ -554,11 +555,6 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		}
 		if(e.getSource() == toModMenu){
 			setMenu();
-		}
-
-		if(e.getSource() == modMenu_close){
-			restart();
-			setAuthComp();
 		}
 	}
 
@@ -704,22 +700,25 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 	}
 
 	public void setMenu(){
-		BaseUtils.execute(BaseUtils.buildUrl("launcher.php"), new Object[]{null});
+		String foldermods = BaseUtils.execute(BaseUtils.buildUrl("mods.php") + "?dir=" + Menu.getServerName(), new Object[]{null});
+		String[] parts = foldermods.split(".jar");
+		for(String name : parts){
+				Menu.modlist.add(name);
+		}
 		panel.remove(hide);
 		panel.remove(close);
 		BufferedImage screen = ImageUtils.sceenComponent(panel);
 		panel.removeAll();
 		addFrameComp();
-		panel.setOptions(screen);
+		panel.setMods(screen);
 		int i = 0;
 		for(String mod : Menu.modlist){
 			Button modButton = new Button(mod);
-			modButton.addActionListener(new Menu(mod));
 			panel.add(modButton);
 			(ModsTheme.createButton(i)).apply(modButton);
+			modButton.addActionListener(new ButtonActionListener(mod));
 			i++;
 		}
-		panel.add(Music);
 		panel.add(options_close);
 		repaint();
 	}

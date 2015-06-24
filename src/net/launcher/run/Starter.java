@@ -13,21 +13,18 @@ public class Starter
 	public static void main(String[] args) throws Exception
 	{
 		try {
-			//args[0] = "wJava";
 			String jarpath = Starter.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
 			int memory = BaseUtils.getPropertyInt("memory", 768);
 			
 			ArrayList<String> params = new ArrayList<String>();
-			//if(!args[0].equals("wJava")){
-				params.add(System.getProperty("java.home")+"/bin/java");
-			//}else{
-			//	params.add("../bin/java");
-			//}
+			params.add(System.getProperty("java.home")+"/bin/java");
 			if(System.getProperty("sun.arch.data.model").equals("32") && (memory>1536)) {
 				memory = 1536;
+				BaseUtils.setProperty("memory", memory);
 			}
 			if(System.getProperty("sun.arch.data.model").equals("64") && (memory<2048)) {
 				memory = 2048;
+				BaseUtils.setProperty("memory", memory);
 			}
 			params.add("-Xmx"+memory+"m");
 			params.add("-XX:MaxPermSize=128m");

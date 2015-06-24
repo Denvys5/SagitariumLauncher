@@ -16,6 +16,6 @@ public class ModsTheme {
     public static int titleX 		= 362;
     public static int titleY 		= 140;
     public static ButtonStyle createButton(int yCoords){
-        return new ButtonStyle(250, 50 + yCoords*100, 300, 23, "font", "button", 16F, Color.RED, true, Align.CENTER);
+        return new ButtonStyle(250, 150 + yCoords*30, 200, 23, "font", "button", 16F, Color.RED, true, Align.CENTER);
     }
 }

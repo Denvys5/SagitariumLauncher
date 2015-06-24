@@ -127,8 +127,7 @@ public class Panel extends JPanel
 				g.drawImage(bar_label, (loadbarX + percentw) - (bar_label.getWidth() / 2), loadbarY - bar_label.getHeight(), null);
 				g.drawString(t.procents + "%", (loadbarX + percentw) - (g.getFontMetrics().stringWidth(t.procents + "%") / 2), loadbarY - (bar_label.getHeight() / 2));
 			} catch(Exception e){}
-		} else if(type == 5)
-		{
+		} else if(type == 5) {
 			g.drawImage(tmpImage, 0, 0, getWidth(), getHeight(), null);
 			g.drawImage(genPanel(panelOpt.w, panelOpt.h, extpanel), panelOpt.x, panelOpt.y, panelOpt.w, panelOpt.h, null);
 			g.setFont(g.getFont().deriveFont(fonttitlesize));
@@ -136,6 +135,12 @@ public class Panel extends JPanel
 			g.drawString("Настройки", titleX, titleY);
 			g.setFont(g.getFont().deriveFont(fontbasesize));
 			g.drawString("Память (в мегабайтах):", memory.x, memory.y - 5);
+		}else if(type == 56){
+			g.drawImage(tmpImage, 0, 0, getWidth(), getHeight(), null);
+			g.drawImage(genPanel(panelOpt.w, panelOpt.h, extpanel), panelOpt.x, panelOpt.y, panelOpt.w, panelOpt.h, null);
+			g.setFont(g.getFont().deriveFont(fonttitlesize));
+			g.setColor(OptionsTheme.memory.textColor);
+			g.drawString("Модификации", titleX, titleY);
 		} else if(type == 55)
 		{
 			g.drawImage(tmpImage, 0, 0, getWidth(), getHeight(), null);
@@ -315,6 +320,23 @@ public class Panel extends JPanel
 		type = 5;
 		timer = new Timer(50, new ActionListener()
 		{	
+			public void actionPerformed(ActionEvent e)
+			{
+				tindex++;
+				if(tindex > 10) timer.stop();
+				tmpImage.getGraphics().drawImage(getByIndex(colors, 1, 0), 0, dragger.h, getWidth(), getHeight() - dragger.h, null);
+				repaint();
+			}
+		});
+		timer.start();
+	}
+
+	public void setMods(BufferedImage screen){
+		reset();
+		tmpImage = screen;
+		type = 56;
+		timer = new Timer(50, new ActionListener()
+		{
 			public void actionPerformed(ActionEvent e)
 			{
 				tindex++;
