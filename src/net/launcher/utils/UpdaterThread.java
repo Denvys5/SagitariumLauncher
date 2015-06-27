@@ -9,6 +9,7 @@ import java.net.URL;
 import java.security.MessageDigest;
 import java.util.List;
 
+import com.denvys5.Menu;
 import net.launcher.components.Game;
 
 
@@ -39,7 +40,10 @@ public class UpdaterThread extends Thread
 		String pathTo = BaseUtils.getAssetsDir().getAbsolutePath();
 		String urlTo = BaseUtils.buildUrl("clients");
 		File dir = new File(pathTo);
+		File dirCL = new File(pathTo);
         if (!dir.exists()) dir.mkdirs();
+		InputStream is;
+		FileOutputStream fos;
 		
 		totalsize = GuardUtils.filesize;
 		
@@ -48,16 +52,28 @@ public class UpdaterThread extends Thread
 		byte[] buffer = new byte[65536];
 		for (int i = 0; i < files.size(); i++)
 		{
+
+			boolean Client = false;
 			currentfile = files.get(i);
+			if(!GuardUtils.getClientMods().isEmpty()){
+				for(String mod: GuardUtils.getClientMods()){
+					if(currentfile.equals("/mods/" + mod)){
+						Client = true;
+					}
+				}
+			}
 			String file = currentfile.replace(" ", "%20");
 			BaseUtils.send("Downloading file: " + currentfile);
 			try {
-              dir = new File(pathTo + "/" + currentfile.substring(0, currentfile.lastIndexOf("/")));
-			} catch (Exception e) {
-			}
+				dir = new File(pathTo + currentfile.substring(0, currentfile.lastIndexOf("/")));
+			}catch(Exception e){}
 			if (!dir.exists()) dir.mkdirs();
-			InputStream is = new BufferedInputStream(new URL(urlTo + file).openStream());
-			FileOutputStream fos = new FileOutputStream(pathTo + "/" + currentfile);
+			is = new BufferedInputStream(new URL(urlTo + file).openStream());
+			fos = new FileOutputStream(pathTo + "/" + currentfile);
+			if(Client){
+				is = new BufferedInputStream(new URL(urlTo + file).openStream());
+				fos = new FileOutputStream(pathTo + "/" + Menu.getServerName() + "/" + currentfile);
+			}
 			long downloadStartTime = System.currentTimeMillis();
 			int downloadedAmount = 0, bs = 0;
 			MessageDigest m = MessageDigest.getInstance("MD5");
@@ -97,7 +113,11 @@ public class UpdaterThread extends Thread
 			BaseUtils.setProperty("assets_aspmd5", GuardUtils.hash(new File(file).toURI().toURL()));
 			ZipUtils.unzip(path, file);
 		}
-		
+
+		if(!GuardUtils.getClientMods().isEmpty()){
+
+		}
+
 		new Game(answer);
 	} catch (Exception e) { e.printStackTrace(); state = e.toString(); error = true; }}
 }

@@ -22,8 +22,8 @@ public class Starter
 				memory = 1536;
 				BaseUtils.setProperty("memory", memory);
 			}
-			if(System.getProperty("sun.arch.data.model").equals("64") && (memory<2048)) {
-				memory = 2048;
+			if(System.getProperty("sun.arch.data.model").equals("64") && (memory<1024)) {
+				memory = 1024;
 				BaseUtils.setProperty("memory", memory);
 			}
 			params.add("-Xmx"+memory+"m");

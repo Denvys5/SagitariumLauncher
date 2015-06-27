@@ -1,5 +1,7 @@
 package com.denvys5;
 
+import net.launcher.utils.BaseUtils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static com.denvys5.Menu.*;
@@ -15,12 +17,11 @@ public class ButtonActionListener implements ActionListener {
         this.mod = mod;
     }
     public void actionPerformed(ActionEvent e) {
-        if (action){
-            selectedModlist.add(mod);
+        if(action){
             action = false;
-        } else {
-            selectedModlist.remove(mod);
+        }else{
             action = true;
         }
+        BaseUtils.setProperty(mod, action);
     }
 }

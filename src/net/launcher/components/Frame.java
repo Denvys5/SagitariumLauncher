@@ -463,7 +463,6 @@ public class Frame extends JFrame implements ActionListener, FocusListener
                 
 		if(e.getSource() == options_close)
 		{
-			Menu.modlist.clear();
 			if(!memory.getText().equals(getPropertyString("memory")))
 			{
 				try
@@ -700,11 +699,6 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 	}
 
 	public void setMenu(){
-		String foldermods = BaseUtils.execute(BaseUtils.buildUrl("mods.php") + "?dir=" + Menu.getServerName(), new Object[]{null});
-		String[] parts = foldermods.split(".jar");
-		for(String name : parts){
-				Menu.modlist.add(name);
-		}
 		panel.remove(hide);
 		panel.remove(close);
 		BufferedImage screen = ImageUtils.sceenComponent(panel);

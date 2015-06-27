@@ -14,6 +14,8 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
+
+import com.denvys5.Menu;
 import net.launcher.components.Frame;
 import net.launcher.components.Game;
 import net.launcher.run.Settings;
@@ -29,6 +31,7 @@ public class GuardUtils
 		ret = false;
 		List<String> files = new ArrayList<String>();	
 			{
+				//System.out.println(answer);
 				String dir = BaseUtils.getAssetsDir().getAbsolutePath().replace("\\", "/");
 				String[] modsArray = answer.split("<br>")[3].split("<::>")[0].split("<:>");
 				List<String> site = new ArrayList<String>();
@@ -57,10 +60,14 @@ public class GuardUtils
 				}
 				for (String check : client) {
 			        if (!sit.contains(check)) {
-			            File file = new File(check.split(":>")[0]);
-			            System.err.println("Delete -> "+file);
-			            delete(file);
-			            ret = true;
+						for(String name:getClientMods()){
+							if(!check.contains(name)){
+								File file = new File(check.split(":>")[0]);
+								System.err.println("Delete -> "+file);
+								delete(file);
+								ret = true;
+							}
+						}
 			        }
 			    }
 				for (String check : site) {
@@ -70,7 +77,26 @@ public class GuardUtils
 			        }
 			    }
 			}
+		if(!getClientMods().isEmpty()){
+			for(String name : getClientMods()){
+				files.add("/mods/" + name);
+				filesize += getModSize(name);
+			}
+		}
 		return files;
+	}
+
+	public static List<String> getClientMods(){
+		List<String> files = new ArrayList<String>();
+		for(String name: Menu.modlist){
+			if(BaseUtils.getPropertyBoolean(name))files.add(name);
+		}
+		return files;
+	}
+
+	public static int getModSize(String name){
+		System.out.print(Menu.modfiles.get(name));
+		return Menu.modfiles.get(name);
 	}
 
 
