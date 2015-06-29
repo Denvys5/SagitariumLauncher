@@ -68,4 +68,8 @@ public class Menu {
             return error;
         }
     }
+
+    public static boolean isModActive(String name){
+        return BaseUtils.getPropertyBoolean(name);
+    }
 }

@@ -168,9 +168,9 @@ public class Game extends JFrame
 				String assets = BaseUtils.getAssetsDir().toString() + File.separator;
 				System.setProperty("fml.ignoreInvalidMinecraftCertificates", "true");
 				System.setProperty("fml.ignorePatchDiscrepancies", "true");
-				System.setProperty("org.lwjgl.librarypath", jarpath+"natives");
-				System.setProperty("net.java.games.input.librarypath", jarpath+"natives");
-				System.setProperty("java.library.path", jarpath+"natives");
+				System.setProperty("org.lwjgl.librarypath", jarpath + "bin" + File.separator + "natives");
+				System.setProperty("net.java.games.input.librarypath", jarpath + "bin" + File.separator + "natives");
+				System.setProperty("java.library.path", jarpath + "bin" + File.separator + "natives");
 				if(BaseUtils.getPropertyBoolean("fullscreen"))
 				{          
 					params.add("--fullscreen");

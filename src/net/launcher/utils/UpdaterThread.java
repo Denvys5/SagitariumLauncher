@@ -52,27 +52,30 @@ public class UpdaterThread extends Thread
 		byte[] buffer = new byte[65536];
 		for (int i = 0; i < files.size(); i++)
 		{
-
 			boolean Client = false;
 			currentfile = files.get(i);
 			if(!GuardUtils.getClientMods().isEmpty()){
 				for(String mod: GuardUtils.getClientMods()){
-					if(currentfile.equals("/mods/" + mod)){
+					if(currentfile.equals("/" + Menu.getServerName() + "/mods/" + mod)){
 						Client = true;
+
 					}
 				}
 			}
 			String file = currentfile.replace(" ", "%20");
 			BaseUtils.send("Downloading file: " + currentfile);
+			StringBuilder file1 = new StringBuilder(currentfile);
+			file1.delete(0, Menu.getServerName().length()+1);
 			try {
 				dir = new File(pathTo + currentfile.substring(0, currentfile.lastIndexOf("/")));
 			}catch(Exception e){}
 			if (!dir.exists()) dir.mkdirs();
-			is = new BufferedInputStream(new URL(urlTo + file).openStream());
-			fos = new FileOutputStream(pathTo + "/" + currentfile);
-			if(Client){
+			if(!Client){
 				is = new BufferedInputStream(new URL(urlTo + file).openStream());
-				fos = new FileOutputStream(pathTo + "/" + Menu.getServerName() + "/" + currentfile);
+				fos = new FileOutputStream(pathTo + "/" + currentfile);
+			}else{
+				is = new BufferedInputStream(new URL(urlTo + file1).openStream());
+				fos = new FileOutputStream(pathTo + "/" + currentfile);
 			}
 			long downloadStartTime = System.currentTimeMillis();
 			int downloadedAmount = 0, bs = 0;

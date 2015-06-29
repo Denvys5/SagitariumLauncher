@@ -8,14 +8,14 @@ public class Settings
 	/** Настройка заголовка лаунчера */
 	public static final String  title		         = "Sagitarium Launcher"; //Заголовок лаунчера
 	public static final String  titleInGame  	     = "Sagitarium Launcher"; //Заголовок лаунчера после авторизации
-	public static final String  baseconf		     = "Games/Sagitarium"; //Папка с файлом конфигурации
-	public static final String  pathconst		     = "Sagitarium/%SERVERNAME%"; //Конструктор пути к папке с MC
+	public static final String  baseconf		     =  System.getProperty("user.home").substring(3) + "/AppData/Roaming/Sagitarium"; //Папка с файлом конфигурации
+	public static final String  pathconst		     =  System.getProperty("user.home").substring(3) + "/AppData/Roaming/Sagitarium/%SERVERNAME%"; //Конструктор пути к папке с MC
 	public static final String  skins                = "MinecraftSkins/"; //Папка скинов
 	public static final String  cloaks               = "MinecraftCloaks/"; //Папка плащей
 	/** Параметры подключения */
 	public static final String  domain	 	         = "sagitarium.org";//Домен сайта
 	public static final String  siteDir		         = "minenew";//Папка с файлами лаунчера на сайте
-	public static final String  updateFile		     = "minenew/launcher/fix";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
+	public static final String  updateFile		     = "http://sagitarium.org/minenew/launcher/SagitariumLauncher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
 	public static final String  buyVauncherLink      = "http://plati.ru/"; //Ссылка на страницу покупки ваучеров
 	public static final String  iMusicname           = "001.mp3";
 	public static final String[] p = {"wireshark", "cheat"};  //Список запрещенных процессов.
@@ -34,6 +34,7 @@ public class Settings
 	{
 		//Для отключения добавьте в адрес ссылки #
 		" Регистрация ::http://sagitarium.org",
+		" Подать заявку ::http://sagitarium.org/forum"
 	};
 
 	/** Настройки структуры лаунчера */
@@ -41,7 +42,7 @@ public class Settings
 	public static boolean useRegister		     =  false;   //Использовать Регистрацию в лаунчере
 	public static boolean useMulticlient		 =  true;   //Использовать функцию "по клиенту на сервер"
 	public static boolean useStandartWB		     =  true;   //Использовать стандартный браузер для открытия ссылок
-	public static boolean usePersonal		     =  false;   //Использовать Личный кабинет
+	public static boolean usePersonal		     =  true;   //Использовать Личный кабинет
 	public static boolean customframe 		     =  true;   //Использовать кастомный фрейм
 	public static boolean useConsoleHider		 =  false;  //Использовать скрытие консоли клиента
 	public static boolean useModCheckerTimer	 =  true;   //Перепроверка jar через 30 секунд
@@ -55,7 +56,7 @@ public class Settings
 
 	public static boolean debug		 	         =  true; //Отображать все действия лаунчера (отладка)(true/false)
 	public static boolean drawTracers		     =  false; //Отрисовывать границы элементов лаунчера
-	public static final String masterVersion     = "1.0"; //Версия лаунчера
+	public static final String masterVersion     = "1.3"; //Версия лаунчера
 
 	public static boolean patchDir 		         =  true; //Использовать автоматическую замену директории игры (true/false)
 	

@@ -16,14 +16,15 @@ public class ThemeUtils extends BaseUtils
 	public static void updateStyle(Frame main) throws Exception
 	{
 		int i = 0;
+		links.x = 10;
+		links.y = 475;
 		for(LinkLabel link : main.links)
 		{
 			links.apply(link);
 			FontMetrics fm = link.getFontMetrics(link.getFont());
-			link.setBounds(i + links.x, links.y, fm.stringWidth(link.getText()), fm.getHeight());
-			i += fm.stringWidth(link.getText()) + links.margin;
+			link.setBounds(links.x, i + links.y, fm.stringWidth(link.getText()), fm.getHeight());
+			i += 20;
 		}
-		
 		dragger.apply(main.dragger);
 		dbuttons.apply(main.hide, main.close);
 		toGame.apply(Frame.toGame);

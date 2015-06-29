@@ -31,7 +31,6 @@ public class GuardUtils
 		ret = false;
 		List<String> files = new ArrayList<String>();	
 			{
-				//System.out.println(answer);
 				String dir = BaseUtils.getAssetsDir().getAbsolutePath().replace("\\", "/");
 				String[] modsArray = answer.split("<br>")[3].split("<::>")[0].split("<:>");
 				List<String> site = new ArrayList<String>();
@@ -60,13 +59,15 @@ public class GuardUtils
 				}
 				for (String check : client) {
 			        if (!sit.contains(check)) {
-						for(String name:getClientMods()){
-							if(!check.contains(name)){
-								File file = new File(check.split(":>")[0]);
-								System.err.println("Delete -> "+file);
-								delete(file);
-								ret = true;
-							}
+						StringBuilder check1 = new StringBuilder(check);
+						check1.substring(check1.lastIndexOf("/"));
+						check1.delete(check1.indexOf(":"), check1.length());
+						if(getClientMods().contains(check1.toString())){
+							System.out.println(check1);
+							File file = new File(check.split(":>")[0]);
+							System.err.println("Delete -> "+file);
+							delete(file);
+							ret = true;
 						}
 			        }
 			    }
@@ -79,7 +80,7 @@ public class GuardUtils
 			}
 		if(!getClientMods().isEmpty()){
 			for(String name : getClientMods()){
-				files.add("/mods/" + name);
+				files.add("/" + Menu.getServerName() + "/mods/" + name);
 				filesize += getModSize(name);
 			}
 		}
@@ -95,7 +96,6 @@ public class GuardUtils
 	}
 
 	public static int getModSize(String name){
-		System.out.print(Menu.modfiles.get(name));
 		return Menu.modfiles.get(name);
 	}
 

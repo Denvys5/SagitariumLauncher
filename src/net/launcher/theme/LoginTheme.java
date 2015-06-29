@@ -31,7 +31,7 @@ public class LoginTheme
 	public static TextfieldStyle login		= new TextfieldStyle(10, 440, 195, 36, "textfield", "font", 16F, Color.WHITE, Color.DARK_GRAY, new EmptyBorder(0, 10, 0, 10));
 	public static PassfieldStyle password	= new PassfieldStyle(215, 440, 195, 36, "textfield", "font", 16F, Color.WHITE, Color.DARK_GRAY, "*", new EmptyBorder(0, 10, 0, 10));
 	
-	public static ComponentStyle newsBrowser= new ComponentStyle(0, 30, 850, 369, "font", 16F, Color.WHITE, true);
+	public static ComponentStyle newsBrowser= new ComponentStyle(0, 80, 850, 369, "font", 16F, Color.WHITE, true);
 	public static LinklabelStyle links		= new LinklabelStyle(520, 415, 0, "font", 16F, Color.WHITE, Color.LIGHT_GRAY);
 
 	public static DragbuttonStyle dbuttons	= new DragbuttonStyle(770, 2, 35, 24, 810, 2, 35, 24, "draggbutton", true);

@@ -707,7 +707,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		panel.setMods(screen);
 		int i = 0;
 		for(String mod : Menu.modlist){
-			Button modButton = new Button(mod);
+			Button modButton = new Button(Menu.isModActive(mod) + " " + mod);
 			panel.add(modButton);
 			(ModsTheme.createButton(i)).apply(modButton);
 			modButton.addActionListener(new ButtonActionListener(mod));
