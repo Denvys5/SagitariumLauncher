@@ -69,11 +69,11 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 	public Button update_no = new Button("Выход");
 
 	public Checkbox loadnews = new Checkbox("Загружать новости");
-    public Checkbox Music = new Checkbox("Музыка в лаунчере");
 	public Checkbox updatepr = new Checkbox("Принудительное обновление");
 	public Checkbox cleanDir = new Checkbox("Очистить папку");
 	public Checkbox fullscreen = new Checkbox("Запустить в полный экран");
 	public Textfield memory = new Textfield();
+	public Textfield threads = new Textfield();
                         
                         
     public Textfield loginReg = new Textfield();
@@ -243,7 +243,6 @@ public class Frame extends JFrame implements ActionListener, FocusListener
         closereg.addActionListener(this);
         okreg.addActionListener(this);
 		loadnews.addActionListener(this);
-        Music.addActionListener(this);
 		fullscreen.addActionListener(this);
 
 		buyCloak.addActionListener(this);
@@ -364,9 +363,9 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 			try
 			{
 				main.memory.setText(String.valueOf(getPropertyInt("memory", 1024)));
+				main.threads.setText(String.valueOf(getPropertyInt("threads", 1)));
 				main.fullscreen.setSelected(getPropertyBoolean("fullscreen"));
 				main.loadnews.setSelected(getPropertyBoolean("loadnews", true));
-                main.Music.setSelected(getPropertyBoolean("Music", true));
 			} catch(Exception e){}
 		} catch(Exception e)
 		{
@@ -463,6 +462,16 @@ public class Frame extends JFrame implements ActionListener, FocusListener
                 
 		if(e.getSource() == options_close)
 		{
+			boolean restart = false;
+			if(!threads.getText().equals(getPropertyString("threads")))
+			{
+				try
+				{
+					int i = Integer.parseInt(threads.getText());
+					setProperty("threads", i);
+				} catch(Exception e1){}
+				restart = true;
+			}
 			if(!memory.getText().equals(getPropertyString("memory")))
 			{
 				try
@@ -470,16 +479,16 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 					int i = Integer.parseInt(memory.getText());
 					setProperty("memory", i);
 				} catch(Exception e1){}
-				restart();
+				restart = true;
 			}
+			if(restart) restart();
 			setAuthComp();
 		}
 
-		if(e.getSource() == fullscreen || e.getSource() == loadnews || e.getSource() == Music)
+		if(e.getSource() == fullscreen || e.getSource() == loadnews)
 		{
 			setProperty("fullscreen", fullscreen.isSelected());
 			setProperty("loadnews",   loadnews.isSelected());
-            setProperty("Music",   Music.isSelected());
 		}
 
 		if(e.getSource() == buyCloak)
@@ -615,11 +624,11 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		addFrameComp();
 		panel.setOptions(screen);
 		panel.add(loadnews);
-        panel.add(Music);
 		panel.add(updatepr);
 		panel.add(cleanDir);
 		panel.add(fullscreen);
 		panel.add(memory);
+		panel.add(threads);
 		panel.add(options_close);
 		repaint();
 	}        

@@ -27,7 +27,7 @@ public class UpdaterThread extends Thread
 	public boolean asupdate = false;
 	public String answer;
 	
-	public UpdaterThread(List<String> files, boolean zipupdate, boolean asupdate,  String answer)
+	public UpdaterThread(List<String> files, boolean zipupdate, boolean asupdate, String answer)
 	{
 		this.files = files;
 		this.zipupdate = zipupdate;
@@ -74,8 +74,8 @@ public class UpdaterThread extends Thread
 				is = new BufferedInputStream(new URL(urlTo + file).openStream());
 				fos = new FileOutputStream(pathTo + "/" + currentfile);
 			}else{
-				is = new BufferedInputStream(new URL(urlTo + file1).openStream());
-				fos = new FileOutputStream(pathTo + "/" + currentfile);
+				is = new BufferedInputStream(new URL(urlTo + file1.toString()).openStream());
+				fos = new FileOutputStream(pathTo + currentfile);
 			}
 			long downloadStartTime = System.currentTimeMillis();
 			int downloadedAmount = 0, bs = 0;
@@ -114,11 +114,8 @@ public class UpdaterThread extends Thread
 			String path = BaseUtils.getAssetsDir().getAbsolutePath() + File.separator;
 			String file = path + "assets.zip";
 			BaseUtils.setProperty("assets_aspmd5", GuardUtils.hash(new File(file).toURI().toURL()));
+			BaseUtils.setProperty("Java installed", true);
 			ZipUtils.unzip(path, file);
-		}
-
-		if(!GuardUtils.getClientMods().isEmpty()){
-
 		}
 
 		new Game(answer);

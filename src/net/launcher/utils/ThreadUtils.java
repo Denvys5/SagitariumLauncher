@@ -98,6 +98,8 @@ public class ThreadUtils
 					Frame.login.setEditable(true);
 					Frame.main.panel.repaint();
 					Frame.main.panel.tmpString = "Ошибка авторизации (Токен устарел)";
+					File file = new File(BaseUtils.getAssetsDir().toURI() + "/launcher.config");
+					file.delete();
 				} else {
 					Frame.main.panel.tmpString = "Ошибка авторизации (Логин, пароль)";
 				}
@@ -259,7 +261,6 @@ public class ThreadUtils
 				files.add("/assets.zip");  asupdate = true;
 			}
 		}
-		
 		BaseUtils.send("---- Filelist start ----");
 		for(Object s : files.toArray())
 		{

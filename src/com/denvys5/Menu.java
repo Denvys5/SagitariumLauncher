@@ -20,21 +20,26 @@ public class Menu {
     public static ArrayList<String> modlist = new ArrayList<String>();
     public static HashMap<String, Integer> modfiles = new HashMap<String, Integer>();
     public static void setModlist(){
-        String foldermods = BaseUtils.execute(BaseUtils.buildUrl("mods.php"), new Object[]{null});
-        String modsize = BaseUtils.execute(BaseUtils.buildUrl("mods.php?size"), new Object[]{null});
-        String[] size = modsize.split("<:>");
-        String[] parts = foldermods.split("<:>");
-        int a = 0;
-        int[] numericSize = new int[size.length];
-        for(String i : size){
-            numericSize[a] = Integer.parseInt(i);
-            a++;
-        }
-        for(String name : parts){
-            Menu.modlist.add(name);
-        }
-        for(int i = 0; i < Menu.modlist.size(); i++){
-            modfiles.put(parts[i], numericSize[i]);
+        try{
+
+            String foldermods = BaseUtils.execute(BaseUtils.buildUrl("mods.php"), new Object[]{null});
+            String modsize = BaseUtils.execute(BaseUtils.buildUrl("mods.php?size"), new Object[]{null});
+            String[] size = modsize.split("<:>");
+            String[] parts = foldermods.split("<:>");
+            int a = 0;
+            int[] numericSize = new int[size.length];
+            for(String i : size){
+                numericSize[a] = Integer.parseInt(i);
+                a++;
+            }
+            for(String name : parts){
+                Menu.modlist.add(name);
+            }
+            for(int i = 0; i < Menu.modlist.size(); i++){
+                modfiles.put(parts[i], numericSize[i]);
+            }
+        }catch(Exception e  ){
+            BaseUtils.send("Can`t set modlist");
         }
     }
 

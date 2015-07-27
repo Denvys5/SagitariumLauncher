@@ -132,9 +132,11 @@ public class Panel extends JPanel
 			g.drawImage(genPanel(panelOpt.w, panelOpt.h, extpanel), panelOpt.x, panelOpt.y, panelOpt.w, panelOpt.h, null);
 			g.setFont(g.getFont().deriveFont(fonttitlesize));
 			g.setColor(OptionsTheme.memory.textColor);
+			g.setColor(OptionsTheme.threads.textColor);
 			g.drawString("Настройки", titleX, titleY);
 			g.setFont(g.getFont().deriveFont(fontbasesize));
 			g.drawString("Память (в мегабайтах):", memory.x, memory.y - 5);
+			g.drawString("Количество потоков:", threads.x, threads.y - 5);
 		}else if(type == 56){
 			g.drawImage(tmpImage, 0, 0, getWidth(), getHeight(), null);
 			g.drawImage(genPanel(panelOpt.w, panelOpt.h, extpanel), panelOpt.x, panelOpt.y, panelOpt.w, panelOpt.h, null);

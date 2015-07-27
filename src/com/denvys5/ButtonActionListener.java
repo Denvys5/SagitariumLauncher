@@ -27,6 +27,5 @@ public class ButtonActionListener implements ActionListener {
         }
         BaseUtils.setProperty(mod, action);
         ((net.launcher.components.Button)e.getSource()).setLabel(Menu.isModActive(mod) + " " + mod);
-        System.out.println(mod + Menu.isModActive(mod));
     }
 }
