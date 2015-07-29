@@ -56,7 +56,7 @@ public class Settings
 
 	public static boolean debug		 	         =  true; //Отображать все действия лаунчера (отладка)(true/false)
 	public static boolean drawTracers		     =  false; //Отрисовывать границы элементов лаунчера
-	public static final String masterVersion     = "1.4"; //Версия лаунчера
+	public static final String masterVersion     = "1.5"; //Версия лаунчера
 
 	public static boolean patchDir 		         =  true; //Использовать автоматическую замену директории игры (true/false)
 	

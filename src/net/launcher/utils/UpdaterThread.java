@@ -58,7 +58,6 @@ public class UpdaterThread extends Thread
 				for(String mod: GuardUtils.getClientMods()){
 					if(currentfile.equals("/" + Menu.getServerName() + "/mods/" + mod)){
 						Client = true;
-
 					}
 				}
 			}

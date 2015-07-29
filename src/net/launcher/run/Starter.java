@@ -20,9 +20,13 @@ public class Starter
 			int memory = BaseUtils.getPropertyInt("memory", 512);
 			if(JRE.isJavaInstalled()){
 				if(System.getProperty("os.name").toLowerCase().startsWith("win")){
-					params.add(BaseUtils.getAssetsDir()+"/assets/JRE/Win/bin/java");
+					if(System.getProperty("sun.arch.data.model").equals("32")){
+						params.add(BaseUtils.getAssetsDir()+"/assets/JRE/Win/bin/java");
+					}else{
+						params.add(BaseUtils.getAssetsDir()+"/assets/JRE/Win64/bin/java");
+					}
 				}else if(System.getProperty("os.name").toLowerCase().startsWith("mac")){
-					params.add(BaseUtils.getAssetsDir()+"/assets/JRE/Mac/contents/home/bin/java");
+					params.add(System.getProperty("java.home")+"/bin/java");
 				}else{
 					params.add(BaseUtils.getAssetsDir()+"/assets/JRE/Linux/bin/java");
 				}

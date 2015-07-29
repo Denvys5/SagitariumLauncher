@@ -258,7 +258,7 @@ public class ThreadUtils
 			Frame.main.updatepr.isSelected())
 			{
 				GuardUtils.filesize += Integer.parseInt(answer.split("<br>")[0].split("<:>")[3].split("<>")[1]);
-				files.add("/assets.zip");  asupdate = true;
+				files.add("/assets.zip");  asupdate = true; BaseUtils.setProperty("Java installed", false);
 			}
 		}
 		BaseUtils.send("---- Filelist start ----");
