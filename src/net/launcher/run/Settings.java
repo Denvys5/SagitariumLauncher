@@ -1,5 +1,6 @@
 package net.launcher.run;
 
+import com.denvys5.GameSize;
 import com.denvys5.Menu;
 import net.launcher.utils.BaseUtils;
 
@@ -20,9 +21,6 @@ public class Settings
 	public static final String  iMusicname           = "001.mp3";
 	public static final String[] p = {"wireshark", "cheat"};  //Список запрещенных процессов.
 	public static final String http = "http://";   //Протокол подключения https:// если есть ssl сертификат
-	
-	public static int height                         = 532;      //Высота окна клиента
-	public static int width                          = 900;      //Ширина окна клиента
         
 	public static String[] servers =
 	{
@@ -56,7 +54,7 @@ public class Settings
 
 	public static boolean debug		 	         =  true; //Отображать все действия лаунчера (отладка)(true/false)
 	public static boolean drawTracers		     =  false; //Отрисовывать границы элементов лаунчера
-	public static final String masterVersion     = "1.5"; //Версия лаунчера
+	public static final String masterVersion     = "1.6"; //Версия лаунчера
 
 	public static boolean patchDir 		         =  true; //Использовать автоматическую замену директории игры (true/false)
 	

@@ -14,6 +14,8 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+
+import com.denvys5.GameSize;
 import net.minecraft.Launcher;
 import net.launcher.run.Settings;
 import net.launcher.utils.BaseUtils;
@@ -118,8 +120,8 @@ public class Game extends JFrame
 					setExtendedState(Frame.main.getExtendedState());
 					setMinimumSize(Frame.main.getMinimumSize());
 				}
-				setSize(Settings.width, Settings.height+28);
-				setMinimumSize(new Dimension(Settings.width, Settings.height+28));
+				setSize(GameSize.getWidth(), GameSize.getHeight()+28);
+				setMinimumSize(new Dimension(GameSize.getWidth(), GameSize.getHeight()+28));
 				setLocationRelativeTo(null);
 				mcapplet.setForeground(Color.BLACK);
 				mcapplet.setBackground(Color.BLACK);
@@ -179,9 +181,9 @@ public class Game extends JFrame
 				else
 				{
 					params.add("--width");
-					params.add(String.valueOf(Settings.width));
+					params.add(String.valueOf(GameSize.getWidth()));
 					params.add("--height");
-					params.add(String.valueOf(Settings.height));
+					params.add(String.valueOf(GameSize.getHeight()));
 				}	
 				if(Settings.useAutoenter) {
 					params.add("--server");
