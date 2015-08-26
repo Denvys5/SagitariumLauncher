@@ -105,7 +105,7 @@ public class Panel extends JPanel
 			UpdaterThread t = ThreadUtils.updaterThread;
 			
 			int leftTime = 0;
-	try	{	leftTime = (int) ((t.totalsize - t.currentsize) / (t.downloadspeed * 100)); } catch(Exception e){}
+	try	{	leftTime = (int) ((t.totalsize - t.currentsize) / (t.downloadspeed * 1000)); } catch(Exception e){}
 			
 			g.setFont(updaterDesc.font);
 			g.setColor(updaterDesc.color);
