@@ -27,7 +27,8 @@ public class GuardUtils
 	public static List<URL> url = new ArrayList<URL>();
 	static long filesize = 0;
 	public static List<String> updateMods(String answer)
-	{  
+	{
+		List<String> clmods = new ArrayList<>();
 		ret = false;
 		List<String> files = new ArrayList<String>();	
 			{
@@ -67,6 +68,8 @@ public class GuardUtils
 							System.err.println("Delete -> "+file);
 							delete(file);
 							ret = true;
+						}else{
+							clmods.add(check1.toString());
 						}
 			        }
 			    }
@@ -79,8 +82,10 @@ public class GuardUtils
 			}
 		if(!getClientMods().isEmpty()){
 			for(String name : getClientMods()){
-				files.add("/" + Menu.getServerName() + "/mods/" + name);
-				filesize += getModSize(name);
+				if(!clmods.contains(name)){
+					files.add("/" + Menu.getServerName() + "/mods/" + name);
+					filesize += getModSize(name);
+				}
 			}
 		}
 		return files;
