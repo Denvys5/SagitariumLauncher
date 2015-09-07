@@ -60,10 +60,9 @@ public class GuardUtils
 				for (String check : client) {
 			        if (!sit.contains(check)) {
 						StringBuilder check1 = new StringBuilder(check);
-						check1.substring(check1.lastIndexOf("/"));
-						check1.delete(check1.indexOf(":"), check1.length());
-						if(getClientMods().contains(check1.toString())){
-							System.out.println(check1);
+						check1.delete(0, check1.lastIndexOf("/") + 1);
+						check1.delete(check1.indexOf(":>"), check1.length());
+						if(!getClientMods().contains(check1.toString())){
 							File file = new File(check.split(":>")[0]);
 							System.err.println("Delete -> "+file);
 							delete(file);

@@ -89,7 +89,7 @@ public class UpdaterThread extends Thread
 				long timeLapse = System.currentTimeMillis() - downloadStartTime;
 				if (timeLapse >= 1000L)
 				{
-					downloadspeed = (int)((int) (downloadedAmount / (float) timeLapse * 100.0F) / 100.0F);
+					downloadspeed = (int)((int) (downloadedAmount / (float) timeLapse * 100.0F) / 102.4F);
 					downloadedAmount = 0;
 					downloadStartTime += 1000L;
 				}
