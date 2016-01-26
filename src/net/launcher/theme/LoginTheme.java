@@ -37,7 +37,6 @@ public class LoginTheme
 	public static DragbuttonStyle dbuttons	= new DragbuttonStyle(770, 2, 35, 24, 810, 2, 35, 24, "draggbutton", true);
 	public static DraggerStyle	  dragger	= new DraggerStyle(0, 0, 770, 30, "font", 16F, Color.WHITE, Align.LEFT);
 	
-	public static ButtonStyle	 update_exe	= new ButtonStyle(190, 370, 70, 40, "font", "button", 16F, Color.GREEN, true, Align.CENTER);
 	public static ButtonStyle	 update_jar	= new ButtonStyle(260, 370, 70, 40, "font", "button", 16F, Color.GREEN, true, Align.CENTER);
 	public static ButtonStyle    update_no	= new ButtonStyle(515, 370, 150, 40, "font", "button", 16F, Color.RED, true, Align.CENTER);
 	

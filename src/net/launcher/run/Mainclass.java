@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import net.launcher.MusPlay;
 import net.launcher.components.Frame;
 import net.launcher.utils.BaseUtils;
 
@@ -35,10 +34,6 @@ public class Mainclass
 		        resStreamOut.close();
 		    }
 			Frame.start();
-			if(BaseUtils.getPropertyBoolean("Music", true))
-			{
-	           new MusPlay(Settings.iMusicname);
-	        }
         } else {
         	Starter.main(null);
         }

@@ -10,7 +10,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JButton;
-import net.launcher.MusPlay;
 import net.launcher.run.Settings;
 import net.launcher.utils.ImageUtils;
 
@@ -53,9 +52,6 @@ protected void paintComponent(Graphics maing) {
 	}
 	if ((this.pressed) && (this.entered)) {
 		this.entered = false;
-		try {
-			new MusPlay("click.mp3");
-		} catch(Exception e) {}
 		g.drawImage(ImageUtils.genButton(w, h, this.pressedTX), 0, 0, w, h, null);
 		this.pressed = false;
 	}

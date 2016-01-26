@@ -69,7 +69,6 @@ public class ThemeUtils extends BaseUtils
 		toGamePSL.apply(main.toGamePersonal);
 		
 		update_no.apply(main.update_no);
-		update_exe.apply(main.update_exe);
 		update_jar.apply(main.update_jar);
 		
 		main.panel.setPreferredSize(new Dimension(frameW, frameH));

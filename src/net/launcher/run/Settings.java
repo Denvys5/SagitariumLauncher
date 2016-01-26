@@ -16,11 +16,10 @@ public class Settings
 	/** Параметры подключения */
 	public static final String  domain	 	         = "sagitarium.org";//Домен сайта
 	public static final String  siteDir		         = "minenew";//Папка с файлами лаунчера на сайте
-	public static final String  updateFile		     = "http://sagitarium.org/minenew/launcher/SagitariumLauncher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
-	public static final String  buyVauncherLink      = "http://sagitarium.org"; //Ссылка на страницу покупки ваучеров
-	public static final String  iMusicname           = "001.mp3";
+	public static final String  updateFile		     = "https://sagitarium.org/minenew/launcher/SagitariumLauncher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
+	public static final String  buyVauncherLink      = "https://sagitarium.org"; //Ссылка на страницу покупки ваучеров
 	public static final String[] p = {"wireshark", "cheat"};  //Список запрещенных процессов.
-	public static final String http = "http://";   //Протокол подключения https:// если есть ssl сертификат
+	public static final String http = "https://";   //Протокол подключения https:// если есть ssl сертификат
         
 	public static String[] servers =
 	{
@@ -54,7 +53,7 @@ public class Settings
 
 	public static boolean debug		 	         =  true; //Отображать все действия лаунчера (отладка)(true/false)
 	public static boolean drawTracers		     =  false; //Отрисовывать границы элементов лаунчера
-	public static final String masterVersion     = "1.7a"; //Версия лаунчера
+	public static final String masterVersion     = "1.7c"; //Версия лаунчера
 
 	public static boolean patchDir 		         =  true; //Использовать автоматическую замену директории игры (true/false)
 	
