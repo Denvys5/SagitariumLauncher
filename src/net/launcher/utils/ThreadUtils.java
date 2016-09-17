@@ -7,6 +7,9 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
+
+import com.denvys5.FileLoader;
+import com.denvys5.Menu;
 import net.y;
 import net.launcher.components.Frame;
 import net.launcher.components.PersonalContainer;
@@ -94,6 +97,7 @@ public class ThreadUtils
 					Frame.toAuth.setVisible(true);
 					Frame.toLogout.setVisible(false);
 					Frame.toRegister.setVisible(Settings.useRegister && true);
+					Frame.toModMenu.setVisible(false);
 					Frame.token = "null";
 					Frame.login.setEditable(true);
 					Frame.main.panel.repaint();
@@ -222,6 +226,7 @@ public class ThreadUtils
 					Frame.toAuth.setVisible(false);
 					Frame.toLogout.setVisible(true);
 					Frame.toRegister.setVisible(false);
+					Frame.toModMenu.setVisible(true);
 					Frame.token = "token";
 					Frame.login.setEditable(false);
 					Frame.main.setAuthComp();
@@ -239,8 +244,23 @@ public class ThreadUtils
 	{
 		boolean zipupdate = false;
 		boolean asupdate = false;
-		List<String> files = GuardUtils.updateMods(answer);
-		
+		int zipsize;
+		List<String> files;
+
+		try{
+			zipsize = Integer.parseInt(BaseUtils.execute(BaseUtils.buildUrl("clientzip.php?client=" + Menu.getServerName()), new Object[]{null}));
+		}catch(Exception e){
+			zipsize = 0;
+		}
+		System.out.println(answer);
+		System.out.println(zipsize);
+		if(!BaseUtils.getPropertyBoolean(Menu.getServerName() + "Zip")){
+			files = FileLoader.downloadclient(Menu.getServerName());
+			GuardUtils.filesize += zipsize;
+		}else{
+			files = GuardUtils.updateMods(answer);
+		}
+
 		String folder = BaseUtils.getMcDir().getAbsolutePath()+File.separator;
 		String asfolder = BaseUtils.getAssetsDir().getAbsolutePath()+File.separator;
 		if(!answer.split("<br>")[0].split("<:>")[2].split("<>")[0].equals(BaseUtils.getPropertyString(BaseUtils.getClientName() + "_zipmd5")) ||

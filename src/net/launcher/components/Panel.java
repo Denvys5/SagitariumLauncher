@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import com.denvys5.ModsTheme;
 import net.launcher.run.Settings;
 import net.launcher.theme.OptionsTheme;
 import net.launcher.utils.BaseUtils;
@@ -139,7 +140,7 @@ public class Panel extends JPanel
 			g.drawString("Количество потоков:", threads.x, threads.y - 5);
 		}else if(type == 56){
 			g.drawImage(tmpImage, 0, 0, getWidth(), getHeight(), null);
-			g.drawImage(genPanel(panelOpt.w, panelOpt.h, extpanel), panelOpt.x, panelOpt.y, panelOpt.w, panelOpt.h, null);
+			g.drawImage(genPanel(ModsTheme.panelOpt.w, ModsTheme.panelOpt.h, extpanel), ModsTheme.panelOpt.x, ModsTheme.panelOpt.y, ModsTheme.panelOpt.w, ModsTheme.panelOpt.h, null);
 			g.setFont(g.getFont().deriveFont(fonttitlesize));
 			g.setColor(OptionsTheme.memory.textColor);
 			g.drawString("Модификации", titleX, titleY);

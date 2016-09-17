@@ -1,17 +1,14 @@
 package net.launcher.components;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import net.launcher.run.Settings;
+import net.launcher.utils.ImageUtils;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import javax.swing.JButton;
-import net.launcher.run.Settings;
-import net.launcher.utils.ImageUtils;
 
 public class Button extends JButton implements MouseListener, MouseMotionListener {
 	private static final long serialVersionUID = 1L;
@@ -48,7 +45,7 @@ protected void paintComponent(Graphics maing) {
 		g.drawImage(ImageUtils.genButton(w, h, this.rolloverTX), 0, 0, w, h, null);
 	}
 	if (!this.entered) {
-		g.drawImage(ImageUtils.genButton(w, h, this.defaultTX), 0, 0, w, h, null);
+		g.drawImage(ImageUtils.genButton(w, h, this.rolloverTX), 0, 0, w, h, null);
 	}
 	if ((this.pressed) && (this.entered)) {
 		this.entered = false;

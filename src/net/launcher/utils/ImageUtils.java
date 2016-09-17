@@ -1,8 +1,7 @@
 package net.launcher.utils;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.RenderingHints.Key;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
@@ -10,8 +9,6 @@ import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.swing.JComponent;
 
 public class ImageUtils
 {
@@ -22,11 +19,12 @@ public class ImageUtils
 		BufferedImage center = img.getSubimage(img.getWidth() / 3, 0, img.getWidth() / 3, img.getHeight());
 		BufferedImage right = img.getSubimage(img.getWidth() / 3 * 2, 0, img.getWidth() / 3, img.getHeight());
 		res.getGraphics().drawImage(left, 0, 0, left.getWidth(), left.getHeight(), null);
-	try{res.getGraphics().drawImage(fill(center, w - left.getWidth() - right.getWidth(), h), left.getWidth(), 0, w - left.getWidth() - right.getWidth(), h, null);}catch(Exception e){}
+	try{res.getGraphics().drawImage(
+			fill(center, w - left.getWidth() - right.getWidth(), h), left.getWidth(), 0, w - left.getWidth() - right.getWidth(), h, null);
+	}catch(Exception e){}
 		res.getGraphics().drawImage(right, w - right.getWidth(), 0, right.getWidth(), h, null);
 		return res;
 	}
-	
 	public static BufferedImage genPanel(int w, int h, BufferedImage img)
 	{
 		BufferedImage res = new BufferedImage(w, h, 2);

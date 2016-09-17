@@ -1,35 +1,28 @@
 package net.launcher.components;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.ServerSocket;
-import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
-
 import com.denvys5.ButtonActionListener;
 import com.denvys5.Menu;
 import com.denvys5.ModsTheme;
+import com.sun.awt.AWTUtilities;
 import net.launcher.run.Settings;
 import net.launcher.utils.BaseUtils;
 import net.launcher.utils.ImageUtils;
 import net.launcher.utils.ThemeUtils;
 import net.launcher.utils.ThreadUtils;
-import static net.launcher.utils.BaseUtils.*;
 
-import com.sun.awt.AWTUtilities;
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.ServerSocket;
+
+import static net.launcher.utils.BaseUtils.*;
 
 public class Frame extends JFrame implements ActionListener, FocusListener
 {
@@ -693,9 +686,9 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		panel.setMods(screen);
 		int i = 0;
 		for(String mod : Menu.modlist){
-			Button modButton = new Button(Menu.isModActive(mod) + " " + mod);
+			Checkbox modButton = new Checkbox(mod);
 			panel.add(modButton);
-			(ModsTheme.createButton(i)).apply(modButton);
+			ModsTheme.createButton(i).apply(modButton);
 			modButton.addActionListener(new ButtonActionListener(mod));
 			i++;
 		}

@@ -1,8 +1,6 @@
 package net.launcher.run;
 
-import com.denvys5.GameSize;
 import com.denvys5.Menu;
-import net.launcher.utils.BaseUtils;
 
 public class Settings
 {
@@ -19,7 +17,7 @@ public class Settings
 	public static final String  updateFile		     = "https://sagitarium.org/minenew/launcher/SagitariumLauncher";//Ссылка на обновления лаунчера. Не писать на конце ".exe .jar"!
 	public static final String  buyVauncherLink      = "https://sagitarium.org"; //Ссылка на страницу покупки ваучеров
 	public static final String[] p = {"wireshark", "cheat"};  //Список запрещенных процессов.
-	public static final String http = "https://";   //Протокол подключения https:// если есть ssl сертификат
+	public static final String http = "http://";   //Протокол подключения https:// если есть ssl сертификат
         
 	public static String[] servers =
 	{
@@ -30,8 +28,8 @@ public class Settings
 	public static final String[] links = 
 	{
 		//Для отключения добавьте в адрес ссылки #
-		" Регистрация ::http://sagitarium.org/reg.php",
-		" Подать заявку ::http://sagitarium.org/forum/index.php?/forum/78-%D0%BF%D0%BE%D0%B4%D0%B0%D1%82%D1%8C-%D0%B7%D0%B0%D1%8F%D0%B2%D0%BA%D1%83/"
+		" Регистрация ::https://sagitarium.org/?a=14PYhNyI7QA8Y",
+		" Подать заявку ::https://sagitarium.org/?a=14RcVa91iCfUE"
 	};
 
 	/** Настройки структуры лаунчера */
@@ -41,7 +39,7 @@ public class Settings
 	public static boolean useStandartWB		     =  true;   //Использовать стандартный браузер для открытия ссылок
 	public static boolean usePersonal		     =  false;   //Использовать Личный кабинет
 	public static boolean customframe 		     =  true;   //Использовать кастомный фрейм
-	public static boolean useConsoleHider		 =  false;  //Использовать скрытие консоли клиента
+	public static boolean useConsoleHider		 =  true;  //Использовать скрытие консоли клиента
 	public static boolean useModCheckerTimer	 =  true;   //Перепроверка jar через 30 секунд
 	public static int     useModCheckerint       =  2;      //Количество раз перепроверки jar во время игры
 	public static boolean assetsfolder           =  false;  //Скачивать assets из папки, или из архива (true=из папки false=из архива) в connect.php должно быть так же.
@@ -51,9 +49,9 @@ public class Settings
 	public static final String key2              = ""; //16 Character Key Ключ пост запросов
 	
 
-	public static boolean debug		 	         =  true; //Отображать все действия лаунчера (отладка)(true/false)
+	public static boolean debug		 	         =  false; //Отображать все действия лаунчера (отладка)(true/false)
 	public static boolean drawTracers		     =  false; //Отрисовывать границы элементов лаунчера
-	public static final String masterVersion     = "1.7c"; //Версия лаунчера
+	public static final String masterVersion     = "1.8"; //Версия лаунчера
 
 	public static boolean patchDir 		         =  true; //Использовать автоматическую замену директории игры (true/false)
 	

@@ -1,11 +1,10 @@
 package net.launcher.components;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-
-import javax.swing.SwingConstants;
-
 import net.launcher.utils.BaseUtils;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class ButtonStyle
 {
@@ -42,11 +41,11 @@ public class ButtonStyle
 		button.setFont(BaseUtils.getFont(fontName, fontSize));
 		button.setHorizontalAlignment(align == Align.LEFT ? SwingConstants.LEFT : align == Align.CENTER ? SwingConstants.CENTER : SwingConstants.RIGHT);
 		
-		int i = texture.getHeight() / 4;
+		int i = texture.getHeight()/4;
 		
 		button.defaultTX = texture.getSubimage(0, 0, texture.getWidth(), i);
-		button.rolloverTX = texture.getSubimage(0, i, texture.getWidth(), i);
-		button.pressedTX = texture.getSubimage(0, i * 2, texture.getWidth(), i);
-		button.lockedTX = texture.getSubimage(0, i * 3, texture.getWidth(), i);
+		button.rolloverTX = texture.getSubimage(0, 0, texture.getWidth(), i);
+		button.pressedTX = texture.getSubimage(0, 0 , texture.getWidth(), i);
+	    button.lockedTX = texture.getSubimage(0, 0 , texture.getWidth(), i);
 	}
 }

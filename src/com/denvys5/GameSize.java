@@ -6,8 +6,8 @@ import net.launcher.utils.BaseUtils;
  * Created by DAVis on 26.08.2015.
  */
 public class GameSize {
-    public static int width = 854;
-    public static int height = 480;
+    public static int width = 1280 ;
+    public static int height = 720;
 
     public static int getWidth(){
         if(!BaseUtils.config.checkProperty("GameWidth")) BaseUtils.setProperty("GameWidth", width);

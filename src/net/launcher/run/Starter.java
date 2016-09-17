@@ -1,14 +1,13 @@
 package net.launcher.run;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-
 import com.denvys5.JRE;
-import com.denvys5.Menu;
 import net.launcher.components.Frame;
 import net.launcher.utils.BaseUtils;
 import net.launcher.utils.ProcessUtils;
+
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Starter
 {
@@ -43,6 +42,22 @@ public class Starter
 			}
 			params.add("-Xmx"+memory+"m");
 			params.add("-XX:MaxPermSize=128m");
+
+			/*params.add("Djavax.net.ssl.keyStoreType=pkcs12");
+			params.add("Djavax.net.ssl.trustStoreType=jks");
+			params.add("Djavax.net.ssl.keyStore=cert.spc");
+			params.add("Djavax.net.ssl.trustStore=gridserver.keystore");
+			params.add("Djavax.net.debug=ssl");
+			params.add("Djavax.net.ssl.keyStorePassword=$PASS");
+			params.add("Djavax.net.ssl.trustStorePassword=$PASS");*/
+			System.setProperty("javax.net.ssl.keyStoreType", "pkcs12");
+			System.setProperty("javax.net.ssl.trustStoreType", "jks");
+			System.setProperty("javax.net.ssl.trustStoreType", "cert.spc");
+			System.setProperty("javax.net.ssl.keyStore", "gridserver.keystore");
+			System.setProperty("javax.net.ssl.trustStore", "ssl");
+			System.setProperty("javax.net.ssl.keyStorePassword", "$PASS");
+			System.setProperty("javax.net.ssl.trustStorePassword", "$PASS");
+
 
 			if(BaseUtils.getPropertyInt("threads") == 0)BaseUtils.setProperty("threads", 1);
 			params.add("-XX:ParallelGCThreads=" + BaseUtils.getPropertyInt("threads"));

@@ -1,16 +1,17 @@
 package net.launcher.utils;
 
+import com.denvys5.Menu;
+import net.launcher.components.Game;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
-//import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.util.List;
 
-import com.denvys5.Menu;
-import net.launcher.components.Game;
+//import java.net.URLConnection;
 
 
 public class UpdaterThread extends Thread
@@ -19,6 +20,7 @@ public class UpdaterThread extends Thread
 	public long totalsize = 0;
 	public long currentsize = 0;
 	public String currentfile = "...";
+	public String FinalState ="(Пожалуйста, не закрывайте лаунчер! Запуск игры может занять до 15 минут)";
 	public int downloadspeed = 0;
 	public List<String> files;
 	public String state = "...";
@@ -98,9 +100,9 @@ public class UpdaterThread extends Thread
 			fos.close();
 			BaseUtils.send("File downloaded: " + currentfile);
 		}
-		state = "Закачка завершена";
-		
-		if(zipupdate)
+		state = "Закачка завершена... Распаковываем архивы.." + FinalState;
+
+        if(zipupdate)
 		{
 			String path = BaseUtils.getMcDir().getAbsolutePath() + File.separator;
 			String file = path + "config.zip";
@@ -113,8 +115,8 @@ public class UpdaterThread extends Thread
 			String path = BaseUtils.getAssetsDir().getAbsolutePath() + File.separator;
 			String file = path + "assets.zip";
 			BaseUtils.setProperty("assets_aspmd5", GuardUtils.hash(new File(file).toURI().toURL()));
-			BaseUtils.setProperty("Java installed", true);
 			ZipUtils.unzip(path, file);
+			BaseUtils.setProperty("Java installed", true);
 		}
 
 		new Game(answer);
