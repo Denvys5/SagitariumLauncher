@@ -687,6 +687,7 @@ public class Frame extends JFrame implements ActionListener, FocusListener
 		int i = 0;
 		for(String mod : Menu.modlist){
 			Checkbox modButton = new Checkbox(mod);
+			modButton.setSelected(Menu.isModActive(mod));
 			panel.add(modButton);
 			ModsTheme.createButton(i).apply(modButton);
 			modButton.addActionListener(new ButtonActionListener(mod));

@@ -49,7 +49,7 @@ public class Settings
 	public static final String key2              = ""; //16 Character Key Ключ пост запросов
 	
 
-	public static boolean debug		 	         =  false; //Отображать все действия лаунчера (отладка)(true/false)
+	public static boolean debug		 	         =  true; //Отображать все действия лаунчера (отладка)(true/false)
 	public static boolean drawTracers		     =  false; //Отрисовывать границы элементов лаунчера
 	public static final String masterVersion     = "1.8"; //Версия лаунчера
 
